@@ -1,89 +1,83 @@
-import { createElem, scrollToSelector } from './utils.js';
-
-// If not using modules, you can adapt this to global functions.
-
 document.addEventListener('DOMContentLoaded', () => {
   renderHeaderFooter();
-  renderProjects();
-  renderTeam();
+  renderPageSpecific();
   setupNavToggle();
   setupProjectModal();
   setupScrollAnimations();
+  setupContactForm();
 });
 
-// Render header and footer (common across pages)
 function renderHeaderFooter() {
-  const root = document.getElementById('site-root');
-  const header = createElem('header', ['navbar']);
-  header.innerHTML = `
-    <div class="container">
-      <div class="logo"><a href="index.html">Our NGO</a></div>
-      <nav>
-        <button class="nav-toggle" aria-label="toggle menu">☰</button>
-        <div class="nav-menu">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact</a>
+  const headerPlaceholder = document.getElementById('site-header');
+  const footerPlaceholder = document.getElementById('site-footer');
+
+  headerPlaceholder.innerHTML = `
+    <header>
+      <div class="container navbar">
+        <div class="logo"><a href="index.html">Our NGO</a></div>
+        <nav>
+          <button class="nav-toggle" aria-label="toggle menu">☰</button>
+          <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+  `;
+
+  footerPlaceholder.innerHTML = `
+    <footer>
+      <div class="container">
+        <p>© ${new Date().getFullYear()} Our NGO. All rights reserved.</p>
+        <div class="social">
+          <a href="#">Facebook</a> |
+          <a href="#">Twitter</a> |
+          <a href="#">Instagram</a>
         </div>
-      </nav>
-    </div>
-  `;
-
-  root.appendChild(header);
-
-  const footer = document.getElementById('site-footer');
-  footer.innerHTML = `
-    <div class="container">
-      <p>© ${new Date().getFullYear()} Our NGO. All rights reserved.</p>
-      <div class="social">
-        <a href="#">Facebook</a> |
-        <a href="#">Twitter</a> |
-        <a href="#">Instagram</a>
       </div>
-    </div>
+    </footer>
   `;
 }
 
-// Render project cards
-function renderProjects() {
-  const container = document.getElementById('project-cards');
-  if (!container) return;
+function renderPageSpecific() {
+  // Projects rendering (on index / projects page)
+  const projectCardsContainer = document.getElementById('project-cards');
+  if (projectCardsContainer) {
+    NGO_DATA.projects.forEach(proj => {
+      const card = utils.createElem('div', ['card', 'fade-in']);
+      card.innerHTML = `
+        <img src="${proj.image}" alt="${proj.title}">
+        <div class="card-content">
+          <h3>${proj.title}</h3>
+          <p>${proj.shortDesc}</p>
+          <button data-projid="${proj.id}" class="btn-primary">Read More</button>
+        </div>
+      `;
+      projectCardsContainer.appendChild(card);
+    });
+  }
 
-  NGO_DATA.projects.forEach(proj => {
-    const card = createElem('div', ['card', 'fade-in']);
-    card.innerHTML = `
-      <img src="${proj.image}" alt="${proj.title}">
-      <div class="card-content">
-        <h3>${proj.title}</h3>
-        <p>${proj.shortDesc}</p>
-        <button data-projid="${proj.id}" class="btn-primary">Read More</button>
-      </div>
-    `;
-    container.appendChild(card);
-  });
+  // Team rendering (only index / about pages with team section)
+  const teamContainer = document.getElementById('team-members');
+  if (teamContainer) {
+    NGO_DATA.team.forEach(mem => {
+      const card = utils.createElem('div', ['card', 'fade-in']);
+      card.innerHTML = `
+        <img src="${mem.image}" alt="${mem.name}">
+        <div class="card-content">
+          <h3>${mem.name}</h3>
+          <p><em>${mem.role}</em></p>
+          <p>${mem.bio}</p>
+        </div>
+      `;
+      teamContainer.appendChild(card);
+    });
+  }
 }
 
-// Render team cards
-function renderTeam() {
-  const container = document.getElementById('team-members');
-  if (!container) return;
-
-  NGO_DATA.team.forEach(mem => {
-    const card = createElem('div', ['card', 'fade-in']);
-    card.innerHTML = `
-      <img src="${mem.image}" alt="${mem.name}">
-      <div class="card-content">
-        <h3>${mem.name}</h3>
-        <p><em>${mem.role}</em></p>
-        <p>${mem.bio}</p>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// Toggle mobile nav
 function setupNavToggle() {
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.nav-menu');
@@ -93,9 +87,9 @@ function setupNavToggle() {
   });
 }
 
-// Modal for project details
 function setupProjectModal() {
   const modal = document.getElementById('project-modal');
+  if (!modal) return;
   const modalBody = document.getElementById('modal-body');
   const closeBtn = modal.querySelector('.modal-close');
 
@@ -107,7 +101,7 @@ function setupProjectModal() {
       if (proj) {
         modalBody.innerHTML = `
           <h2>${proj.title}</h2>
-          <img src="${proj.image}" alt="${proj.title}" style="width:100%;border-radius:8px;">
+          <img src="${proj.image}" alt="${proj.title}" style="width:100%; border-radius:8px; margin-bottom:1rem;">
           <p>${proj.details}</p>
         `;
         modal.classList.remove('hidden');
@@ -119,7 +113,6 @@ function setupProjectModal() {
     modal.classList.add('hidden');
   });
 
-  // Click outside modal content to close
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.classList.add('hidden');
@@ -127,7 +120,6 @@ function setupProjectModal() {
   });
 }
 
-// Scroll-triggered animations (fade-in)
 function setupScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -135,15 +127,12 @@ function setupScrollAnimations() {
         entry.target.classList.add('visible');
       }
     });
-  }, {
-    threshold: 0.2
-  });
+  }, { threshold: 0.2 });
 
   document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
   });
 }
-
 
 function setupContactForm() {
   const form = document.getElementById('contactForm');
@@ -163,9 +152,9 @@ function setupContactForm() {
       return;
     }
 
-    // Example: simulate API call
+    // Simulate a network request (replace with real API)
     try {
-      await new Promise(r => setTimeout(r, 1000)); // simulate delay
+      await new Promise(r => setTimeout(r, 1000));
       status.textContent = 'Thank you! Your message has been sent.';
       status.style.color = 'green';
       form.reset();
