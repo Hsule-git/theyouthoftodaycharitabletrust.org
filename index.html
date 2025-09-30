@@ -3,71 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YOT</title>
+  <title>Our NGO</title>
+
+  <!-- Google Fonts (example: “Poppins” and “Playfair Display”) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>The Youth Of Today Charitable Trust</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div class="container">
-      <h2>Making a Difference in the Community</h2>
-      <p>We work for social upliftment, environmental protection, education, and more.</p>
-      <a class="btn" href="contact.html">Get Involved</a>
-    </div>
-  </section>
+  <div id="site-root">
+    <!-- header will be injected here -->
+  </div>
 
-  <section class="about-preview">
-    <div class="container">
-      <h3>About Us</h3>
-      <p>We are a nonprofit organization dedicated to uplifting lives and creating sustainable change in our community. We focus on various initiatives such as education, healthcare, environment, and community empowerment.</p>
-      <a href="about.html">Learn More</a>
-    </div>
-  </section>
-
-  <section class="projects-preview">
-    <div class="container">
-      <h3>Our Projects</h3>
-      <div class="project-cards">
-        <div class="card">
-          <img src="assets/images/project1.jpg" alt="Project 1" />
-          <h4>Project One</h4>
-          <p>Short description of project one.</p>
-        </div>
-        <div class="card">
-          <img src="assets/images/project2.jpg" alt="Project 2" />
-          <h4>Project Two</h4>
-          <p>Short description of project two.</p>
-        </div>
-        <!-- add more as needed -->
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1>Empowering Communities, Changing Lives</h1>
+        <p>We partner with local groups to bring sustainable change.</p>
+        <a href="#about" class="btn-primary">Learn More</a>
       </div>
-      <a href="projects.html">See All Projects</a>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 Our NGO. All rights reserved.</p>
-      <div class="social">
-        <a href="#">Facebook</a> |
-        <a href="#">Twitter</a> |
-        <a href="#">Instagram</a>
+    <section id="about" class="section about-section">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>We are dedicated to … (mission, vision, values)</p>
+      </div>
+    </section>
+
+    <section id="projects-preview" class="section projects-preview">
+      <div class="container">
+        <h2>Our Projects</h2>
+        <div id="project-cards" class="grid-cards">
+          <!-- cards will be dynamically injected -->
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="section team-section">
+      <div class="container">
+        <h2>Meet Our Team</h2>
+        <div id="team-members" class="grid-cards">
+          <!-- team cards injected -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal for project details -->
+  <div id="project-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div id="modal-body">
+        <!-- details injected -->
       </div>
     </div>
+  </div>
+
+  <footer id="site-footer">
+    <!-- footer injected -->
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
