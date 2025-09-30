@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our NGO</title>
+  <title>Our NGO — Home</title>
 
-  <!-- Google Fonts (example: “Poppins” and “Playfair Display”) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet" />
@@ -14,59 +14,45 @@
 </head>
 <body>
 
-  <div id="site-root">
-    <!-- header will be injected here -->
-  </div>
+  <div id="site-header"></div>
 
   <main>
-    <section id="hero" class="hero-section">
+    <section class="hero-section">
       <div class="hero-content">
         <h1>Empowering Communities, Changing Lives</h1>
         <p>We partner with local groups to bring sustainable change.</p>
-        <a href="#about" class="btn-primary">Learn More</a>
+        <a href="#projects-preview" class="btn-primary">Our Projects</a>
       </div>
     </section>
 
-    <section id="about" class="section about-section">
-      <div class="container">
-        <h2>About Us</h2>
-        <p>We are dedicated to … (mission, vision, values)</p>
-      </div>
-    </section>
-
-    <section id="projects-preview" class="section projects-preview">
+    <section id="projects-preview" class="section">
       <div class="container">
         <h2>Our Projects</h2>
         <div id="project-cards" class="grid-cards">
-          <!-- cards will be dynamically injected -->
+          <!-- project cards injected via JS -->
         </div>
       </div>
     </section>
 
-    <section id="team" class="section team-section">
+    <section id="team" class="section">
       <div class="container">
         <h2>Meet Our Team</h2>
         <div id="team-members" class="grid-cards">
-          <!-- team cards injected -->
+          <!-- team members injected via JS -->
         </div>
       </div>
     </section>
 
-  </main>
-
-  <!-- Modal for project details -->
-  <div id="project-modal" class="modal hidden">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <div id="modal-body">
-        <!-- details injected -->
+    <!-- Modal for project detail -->
+    <div id="project-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div id="modal-body"></div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <footer id="site-footer">
-    <!-- footer injected -->
-  </footer>
+  <div id="site-footer"></div>
 
   <script src="js/data.js"></script>
   <script src="js/utils.js"></script>
