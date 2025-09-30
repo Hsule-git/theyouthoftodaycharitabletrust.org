@@ -3,62 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects – Our NGO</title>
+  <title>Our NGO — Projects</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Our NGO Name</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="projects.html" class="active">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <section class="projects">
-    <div class="container">
-      <h2>Our Projects & Initiatives</h2>
+  <div id="site-header"></div>
 
-      <div class="project-list">
-        <div class="project-item">
-          <img src="assets/images/project1.jpg" alt="Project 1">
-          <div class="project-info">
-            <h4>Project One</h4>
-            <p>Longer description about project one. What it does, beneficiaries, results, etc.</p>
-          </div>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2>All Projects</h2>
+        <div id="project-cards" class="grid-cards">
+          <!-- project cards via JS -->
         </div>
+      </div>
+    </section>
 
-        <div class="project-item">
-          <img src="assets/images/project2.jpg" alt="Project 2">
-          <div class="project-info">
-            <h4>Project Two</h4>
-            <p>Longer description about project two. What it does, beneficiaries, results, etc.</p>
-          </div>
-        </div>
-
-        <!-- more as needed -->
+    <!-- Modal for project detail -->
+    <div id="project-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div id="modal-body"></div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 Our NGO. All rights reserved.</p>
-      <div class="social">
-        <a href="#">Facebook</a> |
-        <a href="#">Twitter</a> |
-        <a href="#">Instagram</a>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script src="js/script.js"></script>
+  <script src="js/data.js"></script>
+  <script src "js/utils.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
-
