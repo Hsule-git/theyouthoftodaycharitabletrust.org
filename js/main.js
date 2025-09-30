@@ -143,3 +143,35 @@ function setupScrollAnimations() {
     observer.observe(el);
   });
 }
+
+
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    if (!name || !email || !message) {
+      status.textContent = 'Please fill in all fields.';
+      status.style.color = 'red';
+      return;
+    }
+
+    // Example: simulate API call
+    try {
+      await new Promise(r => setTimeout(r, 1000)); // simulate delay
+      status.textContent = 'Thank you! Your message has been sent.';
+      status.style.color = 'green';
+      form.reset();
+    } catch (err) {
+      status.textContent = 'Sorry, error sending message.';
+      status.style.color = 'red';
+    }
+  });
+}
